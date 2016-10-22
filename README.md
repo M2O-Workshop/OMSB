@@ -7,5 +7,5 @@ GFM(GitHub Flavored Markdown)で記述します。
 
 # 当面の運営について
 - 各種の議論は、Issueで行う。１つのIssueに１つのネタで起票すること。議論のラベルは"discuss"を付与する  
-その他のラベルはGitHubの。デフォルトである  
+その他のラベルはGitHubのデフォルトである。  
 [GitHubがデフォルトで用意しているIssueラベルの意味](http://qiita.com/maeda_t/items/4344bdeabcc6a18a34cc)
