@@ -1,17 +1,53 @@
-# OMSBについて
-OMSBは、Java勉強会におけるアプリ開発課題のベースとなるアプリケーションである。
+# OMSB
+
+OMSB(Overtime Management System BetaVersion)は、EISにおける残業管理業務をWebアプリとして実装するシステムである。Java勉強会におけるアプリ開発課題のベースとなるアプリケーションを想定している。
+
+## Table of Contents
+
+* [Requirements](#requirements)
+* [Documents](#documents)
+* [Collaborating](#collaborating)
 
 ***
-### GitHubにおける各種ドキュメントの記法について
-GFM(GitHub Flavored Markdown)で記述する。  
-以下、参考サイト。  
-- [Markdownで行こう！](https://gist.github.com/wate/7072365)
-- [Markdown cheat sheet (2nd edition)](https://github.com/higuma/markdown_cheat_sheet)
-- [Markdown記法 チートシート](http://qiita.com/Qiita/items/c686397e4a0f4f11683d "Qiita")
 
-### 当面の運営について
-- 研修のベースとなるコア機能の開発は、Core-DEVチームにて行う
+## <a name="requirements"> Requirements
+OMSBにおける開発環境は以下の通り:
 
-- 各種の議論は、Issueで行う。１つのIssueに１つのネタで起票すること。議論のラベルは**"discuss"**を付与する  
-その他のラベルはGitHubのデフォルトだが、利用シーンは今後協議して決める。
+* Java (JDK1.7)
+* [Sprinb Boot][boot] (フレームワーク)
+* [1stserver社Javaレンタルサーバプラン][1st] (レンタルサーバ)
+ * Tomcat (Application server)
+ * [MariaDB][maria] (DBMS)
+* [Spring Tool Suite][sts] (EclipseベースのSpringプロジェクトカスタマイズIDE)
+ * [maven][maven] (プロジェクト管理ツール)
+* Git (構成管理システム)
+
+## <a name="documents"> Documents
+OMSBにおける各種ドキュメントの管理は以下の通り：
+
+* システム要件、設計書等は、リポジトリの「doc」フォルダの配下に格納
+* その他の事項で共有すべき事項は、[wiki](https://github.com/M2O-Workshop/OMSB/wiki)に記載
+
+## <a name="collaborating"> Collaborating
+OMSBにおける当面の運営は以下の通り:
+
+1. 基本方針
+ * システム要件のうち、一部の機能をコア開発として括りだし、Core-DEVチームにて開発する
+ * コア開発の成果物に対する機能拡張、機能追加を研修課題として受講メンバにて開発する
+
+2. 運営について
+ * 各種の議論は、issueで行う。１つのissueに１つのネタで起票し、ラベルは**"discuss"**を付与する。
+ * issueのその他のラベルはGitHubのデフォルトだが、利用シーンは今後協議して決める。
+3. GitHub運用ポリシー（継続検討）
+ * commit運用
+ * branch運用
+ * PullRequest運用
+
 [GitHubがデフォルトで用意しているIssueラベルの意味](http://qiita.com/maeda_t/items/4344bdeabcc6a18a34cc)
+
+
+[sts]: https://spring.io/tools/sts
+[maven]: https://maven.apache.org/
+[boot]: https://projects.spring.io/spring-boot/
+[maria]: https://mariadb.org/
+[1st]: http://java.1strentalserver.com/modules/plan/index.php?cat_id=3
