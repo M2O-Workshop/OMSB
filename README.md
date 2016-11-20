@@ -39,9 +39,8 @@ OMSBにおける当面の運営は以下の通り:
  * 各種の議論は、issueで行う。１つのissueに１つのネタで起票し、ラベルは**"discuss"**を付与する。
  * issueのその他のラベルはGitHubのデフォルトだが、利用シーンは今後協議して決める。
 3. GitHub運用ポリシー（継続検討）
- * commit運用
- * branch運用
- * PullRequest運用
+ * [コミット/プルリクエスト運用][commit-PR]
+ * [ブランチ運用][branch]
 
 [GitHubがデフォルトで用意しているIssueラベルの意味](http://qiita.com/maeda_t/items/4344bdeabcc6a18a34cc)
 
@@ -51,3 +50,5 @@ OMSBにおける当面の運営は以下の通り:
 [boot]: https://projects.spring.io/spring-boot/
 [maria]: https://mariadb.org/
 [1st]: http://java.1strentalserver.com/modules/plan/index.php?cat_id=3
+[commit-PR]: https://github.com/M2O-Workshop/OMSB/wiki/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%BB%E3%83%97%E3%83%AB%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E9%81%8B%E7%94%A8
+[branch]: https://github.com/M2O-Workshop/OMSB/wiki/%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E9%81%8B%E7%94%A8
