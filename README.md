@@ -13,7 +13,7 @@ OMSB(Overtime Management System BetaVersion)は、EISにおける残業管理業
 ## <a name="requirements"> Requirements
 OMSBにおける開発環境は以下の通り:
 
-* Java (JDK1.7)
+* Java (JDK1.8)
 * [Sprinb Boot][boot] (フレームワーク)
 * [1stserver社Javaレンタルサーバプラン][1st] (レンタルサーバ)
  * Tomcat (Application server)
