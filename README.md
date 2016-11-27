@@ -7,6 +7,7 @@ OMSB(Overtime Management System BetaVersion)は、EISにおける残業管理業
 * [Requirements](#requirements)
 * [Documents](#documents)
 * [Collaborating](#collaborating)
+* [Design Polocy](#designpolicy)
 
 ***
 
@@ -43,6 +44,12 @@ OMSBにおける当面の運営は以下の通り:
  * [ブランチ運用][branch]
 
 [GitHubがデフォルトで用意しているIssueラベルの意味](http://qiita.com/maeda_t/items/4344bdeabcc6a18a34cc)
+
+## <a name="designpolicy"> Design Policy
+OMSBにおける設計方針は以下の通り:
+* OOPにおける**きれいな**設計を目指します。ただし、規模に照らし合わせて**やりすぎないように**したいです。  
+* **テストしやすい**設計が望ましいです。DBや外部接続などのテストしづらい機能は切り出し・疎結合にして、テストの自動化を実現し訳すしたいです。
+* コア開発にあたっては、たたき台をベースに（必要最低限な）外部設計的ドキュメントを作成したいです。（E-R図やクラス図等）
 
 
 [sts]: https://spring.io/tools/sts
