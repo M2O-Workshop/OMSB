@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- CSS -->
+<link href="/css/common.css" th:href="@{/css/common.css}"
+  rel="stylesheet" />
+
+<title>OMSBeta</title>
+</head>
+<body>
+  <!-- JavaScript -->
+  <script type="text/javascript" src="/js/common.js"
+    th:src="@{/js/common.js}"></script>
+
+  <!-- DB登録を行うThymeleafサンプルhtml. -->
+  <p>残業申請画面</p>
+
+  <form method="post" th:action="@{/regist/regist_record}">
+    <table class="tbl_01">
+      <tr>
+        <th>OVERTIME_AT<br />残業対象日
+        </th>
+        <td><input type="date" name="overtime_at" value="2017-01-01" /></td>
+      </tr>
+      <tr>
+        <th>APP_OVERTIME_START_AT<br />申請開始時刻 （例）1800
+        </th>
+        <td><input type="text" name="app_overtime_start_at"
+          maxlength="4" value="1800" /></td>
+      </tr>
+      <tr>
+        <th>APP_OVERTIME_START_AT<br />申請就業時刻 （例）1930
+        </th>
+        <td><input type="text" name="app_overtime_end_at"
+          maxlength="4" value="1930" /></td>
+      </tr>
+      <tr>
+        <th>APP_REASON_CD<br />残業申請理由
+        </th>
+        <td><select name="app_reason_cd">
+            <option value="01">01:突発的作業の発生</option>
+            <option value="02">02:ハードスケジュール</option>
+            <option value="03">03:作業前倒しによるリスク分散</option>
+            <option value="04">04:帰りたくない</option>
+        </select></td>
+      </tr>
+      <tr>
+        <th>REMARK<br />備考
+        </th>
+        <td><textarea name="remark"
+            style="width: 500px; height: 150px;" maxlength="200"></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="登録"
+          onclick="return insert_confirm();" /></td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!-- CSS -->
+<link href="/css/common.css" th:href="@{/css/common.css}"
+  rel="stylesheet" />
+
+<title>OMSBeta</title>
+</head>
+<body>
+  <!-- JavaScript -->
+  <script type="text/javascript" src="/js/common.js"
+    th:src="@{/js/common.js}"></script>
+
+  <!-- DB登録を行うThymeleafサンプルhtml. -->
+  <p>Hello, Spring Boot!</p>
+
+  <div th:fragment="logout" sec:authorize="isAuthenticated()">
+    <p>
+      Login as: <span sec:authentication="principal.username"></span>
+      <span
+        sec:authentication="principal.authorities"></span>
+    </p>
+    <form action="#" th:action="@{/logout}" method="post">
+      <input type="submit" value="Logout" />
+    </form>
+  </div>
+
+</body>
+</html>
