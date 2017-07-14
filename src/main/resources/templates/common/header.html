@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!-- CSS -->
+<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"/>
+</head>
+<body>
+<!-- JavaScript -->
+  <script type="text/javascript" src="/js/common.js" th:src="@{/js/common.js}"></script>
+
+  <footer th:fragment="header">
+    ユーザ名：<span sec:authentication="principal.username"></span>
+    権限<span sec:authentication="principal.authorities"></span>
+    <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+      <input type="submit" value="Logout" />
+    </form>
+    <hr/>
+  </footer>
+
+</body>
+</html>

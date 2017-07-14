@@ -2,7 +2,7 @@
  * Copyright 2016 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.common.entity;
+package com.omsb.domain.model;
 
 import java.sql.Date;
 import java.sql.Time;

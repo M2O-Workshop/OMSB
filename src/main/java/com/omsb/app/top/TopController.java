@@ -2,14 +2,13 @@
  * Copyright 2016 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.top;
+package com.omsb.app.top;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,15 +27,25 @@ public class TopController {
   HttpSession session;
 
   /**
-   * ログイン処理メソッド<br />
-   * ログイン処理を実行する <br />
+   * 初期化処理<br />
    *
    * @param model パラメータモデル
    * @return DB登録入力画面へ遷移
    */
-  @RequestMapping(value = "/top", method = RequestMethod.GET)
-  public String onClickedRegistsButton( Model model ) {
+  @RequestMapping(value = "/top", method = RequestMethod.POST)
+  public String init(  ) {
 
-    return "top/top";
+    return "/top/top";
+  }
+
+  /**
+   * 「残業申請」ボタン押下時処理<br />
+   *
+   * @return 残業申請画面へ遷移
+   */
+  @RequestMapping(value = "/on_regist_application_clicked", method = RequestMethod.POST)
+  public String onClickedRegistsButton( ) {
+
+    return "/regist_application/regist_application_input";
   }
 }

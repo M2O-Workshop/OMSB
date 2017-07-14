@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <!-- CSS -->
 <link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" />
@@ -9,10 +10,13 @@
   <!-- JavaScript -->
   <script type="text/javascript" src="/js/common.js" th:src="@{/js/common.js}"></script>
 
+  <!-- ヘッダー部 -->
+  <div th:substituteby="/common/header :: header"></div>
+
   <!-- DB登録結果を表示するThymeleafサンプルhtml. -->
   <p>DB登録結果画面のサンプル</p>
 
-  <form method="post" th:action="@{/regist/execute_back}">
+  <form th:action="@{/regist/execute_back}" method="post">
     <table class="tbl_02">
       <tr>
   <!--

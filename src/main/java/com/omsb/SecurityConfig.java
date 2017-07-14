@@ -2,18 +2,18 @@
  * Copyright 2017 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.common.config;
+package com.omsb;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import com.omsb.common.service.UserService;
 
 /**
  * @author （作成者） <br />
@@ -25,53 +25,65 @@ import com.omsb.common.service.UserService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+  @Autowired
+  private DataSource dataSource;
+
+  @Override
+  public void configure( WebSecurity web ) throws Exception {
+    web.ignoring().antMatchers( "/css/**", "/js/**" );
+  }
+
   @Override
   protected void configure( HttpSecurity httpSecurity ) throws Exception {
     // 認可の設定
     httpSecurity
         .authorizeRequests()
         // アクセス制限の無いパス
-        .antMatchers( "/", "/login", "/login/**", "/css/**", "/js/**" ).permitAll()
-        .anyRequest()
+        .antMatchers( "/", "/login/**" ).permitAll()
         // その他のパスは認証が必要
-        .authenticated();
+        .anyRequest().authenticated();
 
     // ログイン設定
     httpSecurity
         .formLogin()
         // ログインページ
         .loginPage( "/" )
-        // 認証処理用
+        // 認証処理のパス（固定？）
         .loginProcessingUrl( "/login" )
-        // .loginProcessingUrl( "/login/execute_login" )
         // 失敗時の遷移先
-        .failureUrl( "/?error" )
+        .failureUrl( "/?error=true" )
         // ユーザー名のパラメータ
         .usernameParameter( "username" )
         // パスワードのパラメータ
         .passwordParameter( "password" )
         // 認証成功時の遷移先
-        .defaultSuccessUrl( "/top/top" )
-        .and();
+        .defaultSuccessUrl( "/login/on_login" );
 
     // ログアウト設定
     httpSecurity
         .logout()
-        .logoutRequestMatcher( new AntPathRequestMatcher( "/logout**" ) ) // ログアウト処理のパス
-        .logoutSuccessUrl( "/login/login_input" ); // ログアウト完了後のパス
+        // ログアウトがパス(GET)の場合設定する（CSRF対応）
+        .logoutRequestMatcher( new AntPathRequestMatcher( "/logout" ) )
+        // ログアウトがPOSTの場合設定する
+        // .logoutUrl("/logout")
+        // ログアウト完了後のパス
+        .logoutSuccessUrl( "/?logout=true" )
+        // セッションを破棄する
+        .invalidateHttpSession( true )
+        // ログアウト時に削除するクッキー名
+        // .deleteCookies( "JSESSIONID", "remember-me" )
+        .permitAll();
   }
 
-  @Configuration
-  protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
-    @Autowired
-    UserService userService;
-
-    @Override
-    public void init( AuthenticationManagerBuilder auth ) throws Exception {
-      // 認証するユーザーを設定する
-      auth
-          .userDetailsService( userService );
-    }
+  @Autowired
+  public void configAuthentication( AuthenticationManagerBuilder auth ) throws Exception {
+    auth.jdbcAuthentication()
+        .dataSource( dataSource )
+        .usersByUsernameQuery(
+            "select username, password, enabled from t_user where username = ?" )
+        .authoritiesByUsernameQuery(
+            "select username, authority from t_user where username = ?" );
+    // TODO パスワードの暗号化
   }
 
 }

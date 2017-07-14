@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <!-- CSS -->
 <link href="/css/common.css" th:href="@{/css/common.css}"
@@ -13,19 +13,14 @@
   <script type="text/javascript" src="/js/common.js"
     th:src="@{/js/common.js}"></script>
 
-  <!-- DB登録を行うThymeleafサンプルhtml. -->
-  <p>Hello, Spring Boot!</p>
-
-  <div th:fragment="logout" sec:authorize="isAuthenticated()">
-    <p>
-      Login as: <span sec:authentication="principal.username"></span>
-      <span
-        sec:authentication="principal.authorities"></span>
-    </p>
-    <form action="#" th:action="@{/logout}" method="post">
-      <input type="submit" value="Logout" />
-    </form>
-  </div>
+  <!-- ヘッダー部 -->
+  <!-- TODO: include, replace, sybstitutebyの違いについて調査次第、タグを確定 -->
+  <!-- <div th:include="/common/header :: header"></div> -->
+  <!-- <div th:replace="/common/header :: header"></div> -->
+  <div th:substituteby="/common/header :: header"></div>
+  <form th:action="@{/top/on_regist_application_clicked}" method="post">
+    <input type="submit" name="toRegistApplicationButton" value="残業申請画面へ" />
+  </form>
 
 </body>
 </html>

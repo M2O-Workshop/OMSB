@@ -2,13 +2,13 @@
  * Copyright 2016 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.common.repository;
+package com.omsb.domain.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.omsb.common.entity.OvertimeEntity;
+import com.omsb.domain.model.OvertimeEntity;
 
 /**
  * @author yamamoto-t <br />

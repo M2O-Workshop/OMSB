@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StsSampleApplicationTests {
+public class OmsbApplicationTests {
 
 	@Test
 	public void contextLoads() {

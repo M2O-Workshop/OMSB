@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <!-- CSS -->
 <link href="/css/common.css" th:href="@{/css/common.css}"
@@ -12,10 +13,13 @@
   <script type="text/javascript" src="/js/common.js"
     th:src="@{/js/common.js}"></script>
 
+  <!-- ヘッダー部 -->
+  <div th:substituteby="/common/header :: header"></div>
+
   <!-- DB登録を行うThymeleafサンプルhtml. -->
   <p>残業申請画面</p>
 
-  <form method="post" th:action="@{/regist/regist_record}">
+  <form th:action="@{/regist/regist_record}" method="post">
     <table class="tbl_01">
       <tr>
         <th>OVERTIME_AT<br />残業対象日

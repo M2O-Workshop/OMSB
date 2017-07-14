@@ -2,7 +2,7 @@
  * Copyright 2016 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.insert;
+package com.omsb.app.regist;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.omsb.common.entity.OvertimeEntity;
-import com.omsb.common.repository.OvertimeRepository;
+import com.omsb.domain.model.OvertimeEntity;
+import com.omsb.domain.repository.OvertimeRepository;
 
 /**
  * @author yamamoto-t <br />
@@ -28,8 +28,8 @@ import com.omsb.common.repository.OvertimeRepository;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "regist", method = RequestMethod.GET)
-public class RegistController {
+@RequestMapping(value = "/regist")
+public class RegistApplicationController {
 
   // リポジトリのインスタンスを生成
   @Autowired
@@ -73,7 +73,7 @@ public class RegistController {
     model.addAttribute( "results", list );
 
     // 登録結果画面へ遷移
-    return "regist/regist_result";
+    return "/regist_application/regist_application_result";
   }
 
   /**
@@ -89,6 +89,6 @@ public class RegistController {
     // TODO 戻り遷移処理の実装
 
     // ひとまず何もせず登録入力へ戻る
-    return "regist/regist_input";
+    return "/regist_application/regist_application_input";
   }
 }

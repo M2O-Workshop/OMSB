@@ -9,8 +9,12 @@
 <!-- JavaScript -->
   <script type="text/javascript" src="/js/common.js" th:src="@{/js/common.js}"></script>
 
-<!-- ログインを行うThymeleafサンプルhtml. -->
-  <p class="msg" th:text="${#calendars.format(#calendars.createNow(),'yyyy年MM月dd日 HH時mm分ss秒')}" />
+    <div th:if="${param.error}">
+        <strong>Login Error</strong>
+    </div>
+    <div th:if="${param.logout}">
+        <strong>Success logout</strong>
+    </div>
 
 <form method="post" th:action="@{/login}">
 <table class="tbl_01">

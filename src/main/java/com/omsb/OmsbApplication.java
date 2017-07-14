@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @SpringBootApplication
 @Controller
-public class StsSampleApplication extends SpringBootServletInitializer {
+public class OmsbApplication extends SpringBootServletInitializer {
 
   // memo: SpringMVCはmainメソッドが最初に実行される。
   /**
@@ -29,7 +29,7 @@ public class StsSampleApplication extends SpringBootServletInitializer {
    * @param args 起動引数
    */
   public static void main( String[] args ) {
-    SpringApplication.run( StsSampleApplication.class, args );
+    SpringApplication.run( OmsbApplication.class, args );
   }
 
   // memo:Springでwarを生成するために必要な記述。
@@ -44,7 +44,7 @@ public class StsSampleApplication extends SpringBootServletInitializer {
    */
   @Override
   protected SpringApplicationBuilder configure( SpringApplicationBuilder application ) {
-    return application.sources( StsSampleApplication.class );
+    return application.sources( OmsbApplication.class );
   }
 
   // ルートからログイン画面にそのまま遷移
