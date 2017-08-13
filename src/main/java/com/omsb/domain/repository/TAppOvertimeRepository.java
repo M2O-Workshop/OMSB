@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.omsb.domain.model.OvertimeEntity;
+import com.omsb.domain.model.TAppOvertimeEntity;
 
 /**
  * @author yamamoto-t <br />
@@ -16,7 +16,7 @@ import com.omsb.domain.model.OvertimeEntity;
  *         DB接続検証用に作成 <br />
  *         更新履歴 2016/11/01 yamamoto-t：新規作成 <br />
  */
-public interface OvertimeRepository extends JpaRepository<OvertimeEntity, String> {
+public interface TAppOvertimeRepository extends JpaRepository<TAppOvertimeEntity, String> {
 
   // JPAリポジトリにプリセットされている全件検索を呼び出し。
   /*
@@ -31,6 +31,6 @@ public interface OvertimeRepository extends JpaRepository<OvertimeEntity, String
    * @param pageable 許諾ページ情報（上限件数）
    * @return Page 検索結果の格納されたページオブジェクト
    */
-  Page<OvertimeEntity> findAll( Pageable pageable ); //記法は固定。
+  Page<TAppOvertimeEntity> findAll( Pageable pageable ); //記法は固定。
 
 }

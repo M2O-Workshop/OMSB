@@ -80,9 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     auth.jdbcAuthentication()
         .dataSource( dataSource )
         .usersByUsernameQuery(
-            "select username, password, enabled from t_user where username = ?" )
+            "select employee_number, password, enabled from t_user where employee_number = ?" )
         .authoritiesByUsernameQuery(
-            "select username, authority from t_user where username = ?" );
+            "select employee_number, authority from t_user where employee_number = ?" );
     // TODO パスワードの暗号化
   }
 

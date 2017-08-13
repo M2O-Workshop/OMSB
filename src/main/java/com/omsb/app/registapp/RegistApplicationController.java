@@ -2,23 +2,25 @@
  * Copyright 2016 EIS Co., Ltd. All rights reserved.
  */
 
-package com.omsb.app.regist;
+package com.omsb.app.registapp;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.omsb.domain.model.OvertimeEntity;
-import com.omsb.domain.repository.OvertimeRepository;
+import com.omsb.domain.model.TAppOvertimeEntity;
+import com.omsb.domain.repository.TAppOvertimeRepository;
 
 /**
  * @author yamamoto-t <br />
@@ -33,7 +35,7 @@ public class RegistApplicationController {
 
   // リポジトリのインスタンスを生成
   @Autowired
-  private OvertimeRepository overtimeRepository;
+  private TAppOvertimeRepository overtimeRepository;
 
   /**
    * DB登録処理メソッド <br />
@@ -47,33 +49,41 @@ public class RegistApplicationController {
    * @param create_date 作成日
    * @return 登録結果画面へ遷移
    */
-  @RequestMapping(value = "regist_record", method = RequestMethod.POST)
+  @RequestMapping(value = "/regist_record", method = RequestMethod.POST)
   public String insertRecord( Model model,
-      @RequestParam("overtime_at") String overtime_at,
-      @RequestParam("app_overtime_start_at") String app_overtime_start_at,
-      @RequestParam("app_overtime_end_at") String app_overtime_end_at,
-      @RequestParam("app_reason_cd") String app_reason_cd,
-      @RequestParam("remark") String remark ) {
+      @AuthenticationPrincipal UserDetails userDetail,
+      @RequestParam("overtime_on") String overtimeOn,
+      @RequestParam("app_overtime_start_at") String appOvertimeStartAt,
+      @RequestParam("app_overtime_end_at") String appOvertimeEndAt,
+      @RequestParam("app_break_time") String appBreakTime,
+      @RequestParam("app_reason_code") String appReasonCode,
+      @RequestParam("app_remark") String AppRemark ) {
 
     // DBエンティティの生成
-    OvertimeEntity overtimeEntity = new OvertimeEntity( "123456", Date.valueOf( overtime_at ),
+    TAppOvertimeEntity tAppOvertimeEntity = new TAppOvertimeEntity();
+    tAppOvertimeEntity.setEmployeeNumber( userDetail.getUsername() );
+    tAppOvertimeEntity.setOvertimeOn( Date.valueOf( overtimeOn ) );
+    tAppOvertimeEntity.setAppOvertimeStartAt(
         Time.valueOf(
-            app_overtime_start_at.substring( 0, 2 ) + ":" + app_overtime_start_at.substring( 2, 4 )
-                + ":00" ),
+            appOvertimeStartAt.substring( 0, 2 ) + ":" + appOvertimeStartAt.substring( 2, 4 )
+                + ":00" ) );
+    tAppOvertimeEntity.setAppOvertimeEndAt(
         Time.valueOf(
-            app_overtime_end_at.substring( 0, 2 ) + ":" + app_overtime_end_at.substring( 2, 4 )
-                + ":00" ),
-        app_reason_cd, null, null,
-        null, remark, new Timestamp( System.currentTimeMillis() ), null );
+            appOvertimeEndAt.substring( 0, 2 ) + ":" + appOvertimeEndAt.substring( 2, 4 )
+                + ":00" ) );
+    tAppOvertimeEntity.setAppBreakTime( new BigDecimal( appBreakTime ) );
+    tAppOvertimeEntity.setAppReasonCode(
+        appReasonCode );
+    tAppOvertimeEntity.setAppRemark( AppRemark );
     // DBエンティティをリポジトリに引き渡し、保存（登録）
-    overtimeRepository.saveAndFlush( overtimeEntity );
+    overtimeRepository.saveAndFlush( tAppOvertimeEntity );
     // 結果表示のため、リポジトリに対し全件検索を実行
-    Iterable<OvertimeEntity> list = overtimeRepository.findAll( new PageRequest( 0, 100 ) );
+    Iterable<TAppOvertimeEntity> list = overtimeRepository.findAll( new PageRequest( 0, 100 ) );
     // 検索結果を格納したリストをリクエストにセット
     model.addAttribute( "results", list );
 
-    // 登録結果画面へ遷移
-    return "/regist_application/regist_application_result";
+    // トップ画面へ遷移
+    return "/top/top";
   }
 
   /**

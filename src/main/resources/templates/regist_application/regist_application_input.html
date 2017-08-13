@@ -22,9 +22,9 @@
   <form th:action="@{/regist/regist_record}" method="post">
     <table class="tbl_01">
       <tr>
-        <th>OVERTIME_AT<br />残業対象日
+        <th>OVERTIME_ON<br />残業対象日
         </th>
-        <td><input type="date" name="overtime_at" value="2017-01-01" /></td>
+        <td><input type="date" name="overtime_on" value="2017-01-01" /></td>
       </tr>
       <tr>
         <th>APP_OVERTIME_START_AT<br />申請開始時刻 （例）1800
@@ -39,19 +39,25 @@
           maxlength="4" value="1930" /></td>
       </tr>
       <tr>
+        <th>APP_BREAK_TIME<br />申請休憩時間 （例）0.5
+        </th>
+        <td><input type="text" name="app_break_time"
+          maxlength="4" value="0.5" /></td>
+      </tr>
+      <tr>
         <th>APP_REASON_CD<br />残業申請理由
         </th>
-        <td><select name="app_reason_cd">
+        <td><select name="app_reason_code">
             <option value="01">01:突発的作業の発生</option>
             <option value="02">02:ハードスケジュール</option>
             <option value="03">03:作業前倒しによるリスク分散</option>
-            <option value="04">04:帰りたくない</option>
+            <option value="04">04:test01</option>
         </select></td>
       </tr>
       <tr>
         <th>REMARK<br />備考
         </th>
-        <td><textarea name="remark"
+        <td><textarea name="app_remark"
             style="width: 500px; height: 150px;" maxlength="200"></textarea></td>
       </tr>
       <tr>
